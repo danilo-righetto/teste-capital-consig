@@ -3,10 +3,11 @@
 namespace App\Repositories\Contracts;
 
 use App\Models\Client;
+use App\Http\Requests\ClientFormRequest;
 
 interface ClientRepositoryInterface
 {
-    public function create();
+    public function create(ClientFormRequest $request): Client;
 
     public function find();
 

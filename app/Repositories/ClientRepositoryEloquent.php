@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Repositories\Contracts\ClientRepositoryInterface;
+use App\Http\Requests\ClientFormRequest;
 use App\Models\Client;
 
 class ClientRepositoryEloquent implements ClientRepositoryInterface
@@ -14,7 +15,7 @@ class ClientRepositoryEloquent implements ClientRepositoryInterface
         $this->model = $model;
     }
 
-    public function create()
+    public function create(ClientFormRequest $request): Client
     {
     }
 
