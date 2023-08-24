@@ -1,9 +1,14 @@
 <div class="container">
     <div class="overflow-hidden card table-nowrap table-card mb-10">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h4 class="mb-0">Cliente - @isset($client->nome)
-                    {{ $client->nome }}
+            <h4 class="mb-0">Cliente @isset($client->nome)
+                    - {{ $client->nome }}
                 @endisset
+                @if ($update)
+                    - Editar
+                @else
+                    - Visualizar
+                @endif
             </h4>
         </div>
     </div>
@@ -81,17 +86,19 @@
                 </div>
                 <div class="col">
                     <label for="ativo">Ativo:</label>
-                    <input type="text" id="ativo" name="ativo" class="form-control" placeholder="Ativo"
-                        @isset($client->ativo)value="{{ $client->ativo }}" @endisset
+                    <select class="form-select" id="ativo" name="ativo" aria-label="Status"
                         @if (!$update) readonly disabled @endif>
+                        <option value="0" @if ($client->ativo === 0) selected @endif>Inativo</option>
+                        <option value="1" @if ($client->ativo === 1) selected @endif>Ativo</option>
+                    </select>
                 </div>
             </div>
 
             <div class="card-header d-flex justify-content-between align-items-center">
-                @if ($button)
-                    <button type="submit" class="btn btn-primary">Editar</button>
-                @endif
                 <a href="{{ route('clients.index') }}" class="btn btn-primary">Voltar</a>
+                @if ($button)
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                @endif
             </div>
         </form>
     </div>
