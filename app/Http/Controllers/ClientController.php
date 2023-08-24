@@ -30,7 +30,7 @@ class ClientController extends Controller
 
     public function show(Client $client)
     {
-        return view('clients.show')->with('client', $client);
+        return view('clients.show')->with('client', $client)->with('btname', 'Editar');
     }
 
     public function edit(Client $client)

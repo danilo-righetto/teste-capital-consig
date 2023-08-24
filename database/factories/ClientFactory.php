@@ -31,6 +31,7 @@ class ClientFactory extends Factory
             'cpf' => fake()->cpf(),
             'data_nascimento' => fake()->dateTime(),
             'rua' => fake()->streetName(),
+            'numero_rua' => fake()->buildingNumber(),
             'cep' => fake()->postcode(),
             'cidade' => fake()->city(),
             'estado' => fake()->stateAbbr(),

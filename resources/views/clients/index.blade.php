@@ -48,6 +48,7 @@
                                                         class="dropdown-item">Editar</a>
                                                     <a href="{{ route('clients.destroy', $client->id) }}"
                                                         class="dropdown-item">Excluir</a>
+                                                    {{-- <x-delete :client="$client" /> --}}
                                                 </div>
                                             </div>
                                         </td>

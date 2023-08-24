@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('cpf', 14)->unique();
             $table->date('data_nascimento');
             $table->string('rua');
+            $table->string('numero_rua');
             $table->char('cep', 9);
             $table->string('cidade');
             $table->char('estado', 2);
