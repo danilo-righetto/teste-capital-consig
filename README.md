@@ -1,6 +1,6 @@
 <h1 align="center">
   <p align="center">Teste Laravel - Capital Consig</p>
-  <img src="https://imgur.com/fbwPu3A.jpg" alt="Capital Consig">
+  <img src="https://imgur.com/FYrXN6S.jpg" alt="Capital Consig">
 </h1>
 
 <p align="center">

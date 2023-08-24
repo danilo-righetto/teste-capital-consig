@@ -1,3 +1,3 @@
-<x-layout title="Editar Clients">
-    <h1>Editar Clientes</h1>
+<x-layout title="Mostrar Clients">
+    <x-clients.form :action="route('clients.update', $client->id)" :client="$client" :update="true" :button="true" />
 </x-layout>
