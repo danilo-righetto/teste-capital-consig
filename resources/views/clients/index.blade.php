@@ -12,6 +12,8 @@
                         <h5 class="mb-0">Clientes - Capital Consig</h5>
                         <div class="justify-content-end">
                             <a href="{{ route('clients.create') }}" class="btn btn-info btn-sm">Cadastrar</a>
+                            <a href="{{ route('clients.destroyAll') }}" class="btn btn-danger btn-sm"
+                                data-bs-toggle="modal" data-bs-target="#deleteAllModal">Deletar todos</a>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -62,6 +64,7 @@
                                     </tr>
                                     <x-clients.delete :client="$client" />
                                 @endforeach
+                                <x-clients.deleteAll />
                             </tbody>
                         </table>
                     </div>

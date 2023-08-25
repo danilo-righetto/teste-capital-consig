@@ -47,7 +47,7 @@ class ClientController extends Controller
         $client->nome = $request->nome;
         $client->email = $request->email;
         $client->cpf = $request->cpf;
-        $client->data_nascimento = date('Y-m-d H:i:s', strtotime($request->data_nascimento));
+        $client->data_nascimento = date('Y-m-d', strtotime($request->data_nascimento));
         $client->rua = $request->rua;
         $client->numero_rua = $request->numero_rua;
         $client->cep = $request->cep;
@@ -67,6 +67,10 @@ class ClientController extends Controller
 
     public function destroyAll()
     {
+        var_dump('Righetto');
+        die();
+        // Client::truncate();
+        // return to_route('clients.index')->with('mensagem.sucesso', "Todos os clientes foram removidos com sucesso");
         /* Trabalhando na implementação */
     }
 }
