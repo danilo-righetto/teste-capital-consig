@@ -13,10 +13,11 @@ class ClientController extends Controller
     {
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $clients = Client::all();
-        return view('clients.index')->with('clients', $clients);
+        $mensagemSucesso = $request->session()->get('mensagem.sucesso');
+        return view('clients.index')->with('clients', $clients)->with('mensagemSucesso', $mensagemSucesso);
     }
 
     public function create()
@@ -26,6 +27,9 @@ class ClientController extends Controller
 
     public function store(ClientFormRequest $request)
     {
+        $client = $this->repository->create($request);
+
+        return to_route('clients.index')->with('mensagem.sucesso', "Cliente '{$client->nome}' adicionado(a) com sucesso");
     }
 
     public function show(Client $client)
@@ -38,8 +42,21 @@ class ClientController extends Controller
         return view('clients.edit')->with('client', $client);
     }
 
-    public function update()
+    public function update(Client $client, ClientFormRequest $request)
     {
+        $client->nome = $request->nome;
+        $client->email = $request->email;
+        $client->cpf = $request->cpf;
+        $client->data_nascimento = date('Y-m-d H:i:s', strtotime($request->data_nascimento));
+        $client->rua = $request->rua;
+        $client->numero_rua = $request->numero_rua;
+        $client->cep = $request->cep;
+        $client->cidade = $request->cidade;
+        $client->estado = $request->estado;
+        $client->ativo = $request->ativo;
+        $client->save();
+
+        return to_route('clients.index')->with('mensagemSucesso', "Cliente - '{$client->nome}', editado(a) com sucesso");
     }
 
     public function destroy()

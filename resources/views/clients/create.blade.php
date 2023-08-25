@@ -1,3 +1,3 @@
 <x-layout title="Criar Clients">
-    <h1>Criar Clientes</h1>
+    <x-clients.form :action="route('clients.store')" :update="false" :create="true" :button="true" />
 </x-layout>

@@ -17,6 +17,18 @@ class ClientRepositoryEloquent implements ClientRepositoryInterface
 
     public function create(ClientFormRequest $request): Client
     {
+        return Client::create([
+            'nome' => $request->nome,
+            'email' => $request->email,
+            'cpf' => $request->cpf,
+            'data_nascimento' => date('Y-m-d', strtotime($request->data_nascimento)),
+            'rua' => $request->rua,
+            'numero_rua' => $request->numero_rua,
+            'cep' => $request->cep,
+            'cidade' => $request->cidade,
+            'estado' => $request->estado,
+            'ativo' => $request->ativo
+        ]);
     }
 
     public function find()

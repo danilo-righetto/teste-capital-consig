@@ -1,11 +1,19 @@
 <x-layout title="Clients">
     <div class="container">
+        @isset($mensagemSucesso)
+            <div class="alert alert-success">
+                {{ $mensagemSucesso }}
+            </div>
+        @endisset
         <div class="row">
             <div class="col-12 mb-3 mb-lg-5">
                 <div class="overflow-hidden card table-nowrap table-card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Clientes - Capital Consig</h5>
-                        <a href="{{ route('clients.destroyAll') }}" class="btn btn-light btn-sm">Deletar todos</a>
+                        <div class="justify-content-end">
+                            <a href="{{ route('clients.create') }}" class="btn btn-info btn-sm">Cadastrar</a>
+                            <a href="{{ route('clients.destroyAll') }}" class="btn btn-danger btn-sm">Deletar todos</a>
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table mb-0">

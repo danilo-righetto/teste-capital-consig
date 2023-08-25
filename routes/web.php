@@ -20,3 +20,4 @@ Route::get('/', function () {
 
 Route::resource('clients', ClientController::class);
 Route::delete('/clients/destroy-all', [ClientController::class, 'destroyAll'])->name('clients.destroyAll');
+Route::post('/clients/{client}', [ClientController::class, 'update'])->name('clients.updateOne');

@@ -11,7 +11,7 @@ class ClientFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,9 +24,10 @@ class ClientFormRequest extends FormRequest
         return [
             'nome' => ['required', 'min:3'],
             'email' => ['required', 'email'],
-            'cpf' => ['required', 'min:3', 'max:14'],
+            'cpf' => ['required', 'min:10', 'max:14'],
             'data_nascimento' => ['required', 'min:3'],
             'rua' => ['required', 'min:3'],
+            'numero_rua' => ['required', 'min:1 '],
             'cep' => ['required', 'min:5', 'max:9'],
             'cidade' => ['required', 'min:3'],
             'estado' => ['required', 'max:2'],
