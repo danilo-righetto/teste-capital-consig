@@ -12,7 +12,6 @@
                         <h5 class="mb-0">Clientes - Capital Consig</h5>
                         <div class="justify-content-end">
                             <a href="{{ route('clients.create') }}" class="btn btn-info btn-sm">Cadastrar</a>
-                            <a href="{{ route('clients.destroyAll') }}" class="btn btn-danger btn-sm">Deletar todos</a>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -54,13 +53,14 @@
                                                         class="dropdown-item">Detalhes</a>
                                                     <a href="{{ route('clients.edit', $client->id) }}"
                                                         class="dropdown-item">Editar</a>
-                                                    <a href="{{ route('clients.destroy', $client->id) }}"
-                                                        class="dropdown-item">Excluir</a>
-                                                    {{-- <x-delete :client="$client" /> --}}
+                                                    <button type="button" href="#" class="dropdown-item delete"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal{{ $client->id }}">Excluir</button>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
+                                    <x-clients.delete :client="$client" />
                                 @endforeach
                             </tbody>
                         </table>

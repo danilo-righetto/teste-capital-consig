@@ -59,11 +59,14 @@ class ClientController extends Controller
         return to_route('clients.index')->with('mensagemSucesso', "Cliente - '{$client->nome}', editado(a) com sucesso");
     }
 
-    public function destroy()
+    public function destroy(Client $client)
     {
+        $client->delete();
+        return to_route('clients.index')->with('mensagem.sucesso', "Cliente - '{$client->nome}' removido(a) com sucesso");
     }
 
     public function destroyAll()
     {
+        /* Trabalhando na implementação */
     }
 }

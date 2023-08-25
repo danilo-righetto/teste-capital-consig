@@ -8,6 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <style type="text/css">
         body {
             margin-top: 20px;
@@ -54,6 +56,7 @@
     <link rel="stylesheet" href="{{ asset('js/bootstrap-datetimepicker.min.js') }}">
     <script type="text/javascript">
         $(document).ready(function() {
+            console.log('Danilo');
             $('#data_nascimento').mask('00/00/0000');
             $('#cep').mask('00000-000');
             $('#cpf').mask('000.000.000-00', {
@@ -69,6 +72,13 @@
                     }
                 }
             });
+        });
+        $(document).on('click', '.delete', function() {
+            let id = $(this).attr('data-id');
+            console.log('Modal');
+            console.log("#deleteModal".id);
+            $("#deleteModal".id).modal('show');
+            $("#deleteModal115").modal('show');
         });
     </script>
 </body>
