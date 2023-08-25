@@ -13,7 +13,11 @@
     <style type="text/css">
         body {
             margin-top: 20px;
-            background: #eee;
+            background-image: linear-gradient(250deg, #ecd38d 0%, #ffbb00 100%);
+        }
+
+        main {
+            background-image: linear-gradient(250deg, #ecd38d 0%, #ffbb00 100%);
         }
 
         .card {
@@ -31,6 +35,10 @@
             white-space: nowrap;
         }
 
+        .table-nowrap .table th {
+            color: #F5B201;
+        }
+
         .table>:not(caption)>*>* {
             padding: 0.75rem 1.25rem;
             border-bottom-width: 1px;
@@ -39,6 +47,11 @@
         table th {
             font-weight: 600;
             background-color: #eeecfd !important;
+        }
+
+        .overflow-hidden>.card-header {
+            background-image: linear-gradient(250deg, #1490E7 0%, #1920B0 100%);
+            color: white;
         }
     </style>
 </head>
