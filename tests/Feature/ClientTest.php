@@ -105,7 +105,7 @@ class ClientTest extends TestCase
     public function testPostClientResponse(): void
     {
         /* Arrange */
-        $clientArray = $this->createClient();
+        $clientArray = $this->generateClient();
 
         /* Act */
         $response = $this->postJson('/api/clients', $clientArray);
@@ -135,7 +135,99 @@ class ClientTest extends TestCase
         $response->assertJsonPath('ativo', $clientArray['ativo']);
     }
 
-    private function createClient(): array
+    public function testPutClientResponse(): void
+    {
+        /* Arrange */
+        $faker = Faker::create('pt_BR');
+        $clientNome = $faker->name();
+        $clientCpf = $faker->cpf();
+
+        $client = Client::factory(1)->create();
+        $clientArray = [
+            'id' => $client[0]->id,
+            'nome' => $clientNome,
+            'email' => $client[0]->email,
+            'cpf' => $clientCpf,
+            'data_nascimento' => $client[0]->data_nascimento->format('Y-m-d H:i:s'),
+            'rua' => $client[0]->rua,
+            'numero_rua' => $client[0]->numero_rua,
+            'cep' => $client[0]->cep,
+            'cidade' => $client[0]->cidade,
+            'estado' => $client[0]->estado,
+            'ativo' => $client[0]->ativo == true ? 1 : 0
+        ];
+
+        /* Act */
+        $response = $this->putJson('/api/clients/' . $client[0]->id, $clientArray);
+
+        /* Assert */
+        $response->assertStatus(200);
+        $response->assertJsonCount(11);
+        $response->assertContent(json_encode($clientArray));
+        $response->assertExactJson($clientArray);
+        $response->assertHeader('cache-control', 'no-cache, private');
+        $response->assertHeader('content-type', 'application/json');
+        $response->assertHeader('x-ratelimit-limit', '60');
+        $response->assertHeader('x-ratelimit-remaining', '59');
+        $response->assertHeader('access-control-allow-origin', '*');
+        $response->assertJsonPath('id', $clientArray['id']);
+        $response->assertJsonPath('nome', $clientNome);
+        $response->assertJsonPath('email', $clientArray['email']);
+        $response->assertJsonPath('cpf', $clientCpf);
+        $response->assertJsonPath('data_nascimento', $clientArray['data_nascimento']);
+        $response->assertJsonPath('rua', $clientArray['rua']);
+        $response->assertJsonPath('numero_rua', $clientArray['numero_rua']);
+        $response->assertJsonPath('cep', $clientArray['cep']);
+        $response->assertJsonPath('cidade', $clientArray['cidade']);
+        $response->assertJsonPath('estado', $clientArray['estado']);
+        $response->assertJsonPath('ativo', $clientArray['ativo']);
+    }
+
+    public function testDeleteClientResponse(): void
+    {
+        /* Arrange */
+        $client = Client::factory(1)->create();
+        $clientArray = [
+            'id' => $client[0]->id,
+            'nome' => $client[0]->nome,
+            'email' => $client[0]->email,
+            'cpf' => $client[0]->cpf,
+            'data_nascimento' => $client[0]->data_nascimento->format('Y-m-d H:i:s'),
+            'rua' => $client[0]->rua,
+            'numero_rua' => $client[0]->numero_rua,
+            'cep' => $client[0]->cep,
+            'cidade' => $client[0]->cidade,
+            'estado' => $client[0]->estado,
+            'ativo' => $client[0]->ativo == true ? 1 : 0
+        ];
+
+        /* Act */
+        $response = $this->delete('/api/clients/' . $client[0]->id);
+
+        /* Assert */
+        $response->assertStatus(200);
+        $response->assertJsonCount(11);
+        $response->assertContent(json_encode($clientArray));
+        $response->assertExactJson($clientArray);
+        $response->assertHeader('cache-control', 'no-cache, private');
+        $response->assertHeader('content-type', 'application/json');
+        $response->assertHeader('x-ratelimit-limit', '60');
+        $response->assertHeader('x-ratelimit-remaining', '59');
+        $response->assertHeader('access-control-allow-origin', '*');
+        $response->assertJsonPath('id', $clientArray['id']);
+        $response->assertJsonPath('nome', $clientArray['nome']);
+        $response->assertJsonPath('email', $clientArray['email']);
+        $response->assertJsonPath('cpf', $clientArray['cpf']);
+        $response->assertJsonPath('data_nascimento', $clientArray['data_nascimento']);
+        $response->assertJsonPath('rua', $clientArray['rua']);
+        $response->assertJsonPath('numero_rua', $clientArray['numero_rua']);
+        $response->assertJsonPath('cep', $clientArray['cep']);
+        $response->assertJsonPath('cidade', $clientArray['cidade']);
+        $response->assertJsonPath('estado', $clientArray['estado']);
+        $response->assertJsonPath('ativo', $clientArray['ativo']);
+    }
+
+    private function generateClient(): array
     {
         $faker = Faker::create('pt_BR');
 
@@ -150,6 +242,24 @@ class ClientTest extends TestCase
             'cidade' => $faker->city(),
             'estado' => $faker->stateAbbr(),
             'ativo' => $faker->randomElement(array(true, false))
+        ];
+    }
+
+    private function createClient(): array
+    {
+        $client = Client::factory(1)->create();
+        return [
+            'id' => $client[0]->id,
+            'nome' => $client[0]->nome,
+            'email' => $client[0]->email,
+            'cpf' => $client[0]->cpf,
+            'data_nascimento' => $client[0]->data_nascimento->format('Y-m-d H:i:s'),
+            'rua' => $client[0]->rua,
+            'numero_rua' => $client[0]->numero_rua,
+            'cep' => $client[0]->cep,
+            'cidade' => $client[0]->cidade,
+            'estado' => $client[0]->estado,
+            'ativo' => $client[0]->ativo == true ? 1 : 0
         ];
     }
 }
