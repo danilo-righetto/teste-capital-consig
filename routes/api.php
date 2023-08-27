@@ -19,4 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('clients', ApiClientController::class);
+Route::get('/clients', [ApiClientController::class, 'index'])->name('api.clients.index');
+Route::get('/clients/{client}', [ApiClientController::class, 'getOne'])->name('api.clients.getOne');
+Route::post('/clients', [ApiClientController::class, 'store'])->name('api.clients.store');
+Route::put('/clients/{client}', [ApiClientController::class, 'update'])->name('api.clients.update');
+Route::delete('/clients/{client}', [ApiClientController::class, 'destroy'])->name('api.clients.destroy');

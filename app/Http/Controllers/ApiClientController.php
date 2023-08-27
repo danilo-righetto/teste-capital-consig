@@ -18,26 +18,16 @@ class ApiClientController extends Controller
         return response()->json($clients);
     }
 
-    public function create()
+    public function getOne(Client $client)
     {
-        return view('clients.create');
+        $client = Client::find($client->id);
+        return response()->json($client);
     }
 
     public function store(ClientFormRequest $request)
     {
         $client = $this->repository->create($request);
-
-        return to_route('clients.index')->with('mensagem.sucesso', "Cliente '{$client->nome}' adicionado(a) com sucesso");
-    }
-
-    public function show(Client $client)
-    {
-        return view('clients.show')->with('client', $client)->with('btname', 'Editar');
-    }
-
-    public function edit(Client $client)
-    {
-        return view('clients.edit')->with('client', $client);
+        return response()->json($client);
     }
 
     public function update(Client $client, ClientFormRequest $request)
@@ -54,17 +44,12 @@ class ApiClientController extends Controller
         $client->ativo = $request->ativo;
         $client->save();
 
-        return to_route('clients.index')->with('mensagemSucesso', "Cliente - '{$client->nome}', editado(a) com sucesso");
+        return response()->json($client);
     }
 
     public function destroy(Client $client)
     {
         $client->delete();
-        return to_route('clients.index')->with('mensagem.sucesso', "Cliente - '{$client->nome}' removido(a) com sucesso");
-    }
-
-    public function destroyAll()
-    {
-        /* Trabalhando na implementação */
+        return response()->json($client);
     }
 }
