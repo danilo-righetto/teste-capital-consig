@@ -5,7 +5,7 @@
 
 <p align="center">
   <a href="#license"><img src="https://img.shields.io/github/license/sourcerer-io/hall-of-fame.svg?colorB=ff0000"></a>
-  <a href="https://imgur.com/fbwPu3A.jpg"><img src="https://img.shields.io/badge/cardapio-working-brightgreen?color=green" alt="Cardapio Online"></a>
+  <a href="https://imgur.com/fbwPu3A.jpg"><img src="https://img.shields.io/badge/cardapio-working-brightgreen?color=green" alt="Capital Consig"></a>
   <a href="CONTRIBUTING.md#pull-requests"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome with Admins"></a>
 </p>
 
